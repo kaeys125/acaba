@@ -16,6 +16,7 @@ const webhookRoutes = require('./routes/webhooks');
 const adminRoutes = require('./routes/admin');
 const Scheduler = require('./utils/scheduler');
 const ChatService = require('./services/ChatService');
+const logger = require('./utils/logger');
 const path = require('path');
 
 const app = express();
@@ -86,7 +87,7 @@ app.get('/', (req, res) => {
 
 // ===== ERROR HANDLING =====
 app.use((err, req, res, next) => {
-  console.error('Erro:', err);
+  logger.error('Erro no middleware:', err);
   res.status(500).json({ error: 'Erro interno do servidor' });
 });
 
@@ -94,10 +95,14 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
-  
+  logger.info(`🚀 Servidor rodando em http://localhost:${PORT}`);
   // Inicializar scheduler automático
-  Scheduler.init();
+  try {
+    Scheduler.init();
+    logger.info('Scheduler inicializado com sucesso');
+  } catch (err) {
+    logger.error('Erro ao inicializar scheduler', err);
+  }
 });
 
 module.exports = app;
