@@ -39,6 +39,7 @@ yarn-error.log*
 *.sql.backup
 database.db
 *.sqlite
+backend/backend_data/*.db
 
 # Temporary files
 tmp/
