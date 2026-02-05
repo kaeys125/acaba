@@ -13,6 +13,7 @@ import BenefitsSection from '../components/UI/BenefitsSection'
 import MetricsDashboard from '../components/UI/MetricsDashboard'
 import TeamSection from '../components/UI/TeamSection'
 import VideoTestimonials from '../components/UI/VideoTestimonials'
+import CTANewsletter from '../components/UI/CTANewsletter'
 import { motion } from 'framer-motion'
 
 export default function Home() {
@@ -786,6 +787,9 @@ export default function Home() {
               <BlogSection />
             </div>
           </section>
+
+          {/* CTA Newsletter */}
+          <CTANewsletter />
 
           {/* Final CTA */}
           <section className="bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-800 dark:to-cyan-800 py-20 sm:py-32 text-white">
